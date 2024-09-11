@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUC À LA CANNELLE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 100px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #8B4513;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #A0522D;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #FAFAD2;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .recipes {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Logo Truco De La Canela">
+            <h1>TRUC À LA CANNELLE</h1>
+        </div>
+        <form id="cinnamonForm">
+            <div class="form-group">
+                <label for="age">âge</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Poids (en kg)</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Taille (cm)</label>
+                <input type="number" id="height" name="height" required>
+            </div>
+            <button type="button" class="btn" onclick="calculateCinnamon()">Calculez</button>
+            <div class="error" id="error" style="display: none;"></div>
+        </form>
+        <div class="result" id="result"></div>
+        <div class="recipes">
+            <h2>Mode d'emploi et recettes</h2>
+            <p>Pour de meilleurs résultats, consommez de la cannelle de la manière suivante :</p>
+            <ul>
+                <li>Ajoutez de la cannelle à votre café ou thé du matin.</li>
+                <li>Parsemez de la cannelle sur les fruits frais ou l'avoine.</li>
+                <li>Ajoutez de la cannelle aux smoothies ou jus.</li>
+                <li>Utilisez de la cannelle en poudre dans des recettes de pâtisserie comme des pains et des gâteaux.</li>
+            </ul>
+            <p>Consultez toujours un professionnel de la santé avant de commencer tout régime de supplémentation.</p>
+        </div>
+    </div>
+    <script>
+        function calculateCinnamon() {
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            const errorDiv = document.getElementById('error');
+            errorDiv.style.display = 'none'; // Limpar mensagem de erro
+
+            if (!age || !weight || !height) {
+                errorDiv.innerText = 'Veuillez remplir toutes vos informations dans les champs.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            // Formule fictive pour le calcul de la quantité de cannelle
+            const dailyCinnamon = (weight / 10) + (height / 100) - (age / 50);
+            const weeklyCinnamon = dailyCinnamon * 7;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h3>Résultat</h3>
+                <p>Vous devez consommer environ <strong>${dailyCinnamon.toFixed(2)} grammes</strong> de cannelle par jour.</p>
+                <p>Cela équivaut à environ <strong>${weeklyCinnamon.toFixed(2)} grammes</strong> de cannelle par semaine.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
